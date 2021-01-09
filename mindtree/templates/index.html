@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Django Online Exam Portal</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+
+		$(document).ready(function(){
+			$("but1").click(function(){
+				$(".rb").show();
+				$(".rb").attr("disabled", true);
+			});
+		});
+
+		function getAnswer() {
+			document.getElementById('UserAnswers').innerHTML="";
+			var e = document.getElementByTagName('input');
+			for (var i = 0;i<=e.length;i++) {
+				if (e[i].type=="radio"){
+					if (e[i].checked){
+						document.getElementById(UserAnswers).innerHTML+="Q "+e[i].name+"The answer you are selected is :"+e[i].value+"<br/>";
+					}
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<center>
+		<h1>Mindtester</h1>	
+	</center>
+	<div style="padding-left: 30px">
+		{% for result in Exam %}
+		<table>
+			<tr>
+				<td>{{result.id}}) {{result.Question}} ?</td>
+			</tr>
+			<tr>
+				<td><input type="radio" class="rb" name="{{result.id}}" id="Option1" value="{{result.option1}}">{{result.option1}}</td>
+			</tr>
+			<tr>
+				<td><input type="radio" class="rb" name="{{result.id}}" id="Option2" value="{{result.option2}}">{{result.option2}}</td>
+			</tr>
+			<tr>
+				<td><input type="radio" class="rb" name="{{result.id}}" id="Option3" value="{{result.option3}}">{{result.option3}}</td>
+			</tr>
+			<tr>
+				<td><input type="radio" class="rb" name="{{result.id}}" id="Option4" value="{{result.option4}}">{{result.option4}}</td>
+			</tr>
+			<tr>
+				<td><label id="corans" style="display: none;color: green;"><b>{{result.correct_ans}}</b></label></td>
+			</tr>
+			<hr/>
+		</table>
+		{% endfor %}
+		<hr/>
+		<input type="submit" class="rb" value="Click For results" id="but1" onclick="getAnswer();">
+		<b id="UserAnswers"></b>
+		<hr/>
+	</div>
+</body>
+</html>

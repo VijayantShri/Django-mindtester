@@ -1,0 +1,229 @@
+{% if request.session.title %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mindtester - Quiz</title>
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+	{% load static %}
+	<script src="{% static 'script.js' %}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<style type="text/css">
+	@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+		* {
+		    margin: 0;
+		    padding: 0;
+		    box-sizing: border-box
+		}
+
+		body {
+		    font-family: 'Open Sans', sans-serif;
+		    background: #eee
+		}
+
+		.wrapper {
+		    max-width: 600px;
+		    margin: 20px auto
+		}
+
+		.content {
+		    padding: 20px;
+		    padding-bottom: 50px
+		}
+
+		a:hover {
+		    text-decoration: none
+		}
+
+		a,
+		span {
+		    font-size: 15px;
+		    font-weight: 600;
+		    color: rgb(50, 141, 245);
+		    padding-bottom: 30px
+		}
+
+		p.text-muted {
+		    font-size: 14px;
+		    font-weight: 500;
+		    margin-bottom: 5px
+		}
+
+		b {
+		    font-size: 15px;
+		    font-weight: bolder
+		}
+
+		.option {
+		    display: block;
+		    height: 50px;
+		    background-color: #f4f4f4;
+		    position: relative;
+		    width: 100%
+		}
+
+		.option:hover {
+		    background-color: #e8e8e8;
+		    cursor: pointer
+		}
+
+		.option input {
+		    position: absolute;
+		    opacity: 0;
+		    cursor: pointer
+		}
+
+		.checkmark,
+		.crossmark {
+		    position: absolute;
+		    top: 10px;
+		    right: 10px;
+		    height: 22px;
+		    width: 22px;
+		    background-color: #f4f4f4;
+		    border-radius: 2px;
+		    padding: 0
+		}
+
+		.option:hover input~.checkmark,
+		.option:hover input~.crossmark {
+		    background-color: #e8e8e8
+		}
+
+		.option input:checked~.checkmark {
+		    background-color: #79d70f
+		}
+
+		.option input:checked~.crossmark {
+		    background-color: #ec3838
+		}
+
+		.checkmark:after,
+		.crossmark:after {
+		    content: "\2714";
+		    position: absolute;
+		    background-color: #79d70f;
+		    display: none;
+		    color: #fff;
+		    padding-left: 4px;
+		    width: 22px;
+		    font-size: 16px
+		}
+
+		.crossmark:after {
+		    content: "\2715";
+		    background-color: #ec3838
+		}
+
+		.option input:checked~.checkmark:after,
+		.option input:checked~.crossmark:after {
+		    display: block;
+		    transition: 100ms ease-out 1s
+		}
+
+		p.mb-4 {
+		    border-left: 3px solid green
+		}
+
+		p.my-2 {
+		    border-left: 3px solid red
+		}
+
+		input[type="submit"] {
+		    width: 100%;
+		    height: 50px;
+		    background-color: #229aeb;
+		    border: none;
+		    outline: none;
+		    color: #fff;
+		    font-weight: 600;
+		    cursor: pointer
+		}
+
+		input[type="submit"]:hover:focus {
+		    border: none;
+		    outline: none;
+		    background-color: #229bebad
+		}
+	</style>
+
+</head>
+<body>
+	<div class="wrapper bg-white rounded">
+		{% for quiz in ques %}
+	    <form>
+	    	<div class="content">
+		        <p class="text-muted">Question No. {{page}}</p>
+		        <p class="text-justify h5 pb-2 font-weight-bold">{{quiz.question}}</p>
+		        <div class="options py-3"> 
+		        	<label class="rounded p-2 option"> 
+		        		{{quiz.option1}}
+		        		<input type="radio" name="radio" value="{{quiz.option1}}"> 
+		        		<span class="checkmark"></span> 
+		        	</label> 
+		        	<label class="rounded p-2 option"> 
+		        		{{quiz.option2}}
+		        		<input type="radio" name="radio" value="{{quiz.option2}}"> 
+		        		<span class="checkmark"></span> 
+		        	</label> 
+		        	<label class="rounded p-2 option"> 
+		        		{{quiz.option3}}
+		        		<input type="radio" name="radio" value="{{quiz.option3}}"> 
+		        		<span class="checkmark"></span> 
+		        	</label> 
+		        	<label class="rounded p-2 option"> 
+		        		{{quiz.option4}} 
+		        		<input type="radio" name="radio" value="{{quiz.option4}}"> 
+		        		<span class="checkmark"></span> 
+		        	</label> 
+		        </div> 
+		        <b>Correct Answer</b>
+		        <p class="mt-2 mb-4 pl-2 text-justify"> 
+		        	{{quiz.correct_ans}}
+		        </p> 
+		        <b>Incorrect Feedback</b>
+		        <p class="my-2 pl-2"> 
+		        	{{quiz.description}}
+		    	</p>
+	    	</div>
+	    	<input type="hidden" name="title" value="{{title}}">
+		</form>
+		{% endfor %}
+		<div class="form-group">
+			<center>
+		    	<button style="width: 100%" id="save_ans" class="btn btn-success mx-sm-6">
+		    		<b>Submit</b>
+		    	</button>
+			</center>
+		</div>
+		<div class="paginator">
+			<div class="form-group">
+				{% if ques.has_next %}
+					<a href="?page={{ques.next_page_number}}">
+						<button style="width: 100%; padding: " class="btn form-control btn-primary" id="submitAnswer">
+							<b>Next</b>
+						</button>
+					</a>
+				{% else %}
+					<a href="{% url 'result' %}">
+						<button style="width: 100%; padding: 1% 0% " class="btn form-control btn-success" id="submitAnswer">
+							<b>Submit Quiz</b>
+						</button>
+					</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
+{% request.session['title'] %}
