@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <style type="text/css">
+        body {
+            background-color: orange
+        }
+
+        .flex {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto
+        }
+
+        @media (max-width:991.98px) {
+            .padding {
+                padding: 1.5rem
+            }
+        }
+
+        @media (max-width:767.98px) {
+            .padding {
+                padding: 0rem
+            }
+        }
+
+        .padding {
+            padding: 5rem
+        }
+
+        .card {
+            background: #fff;
+            border-width: 0;
+            border-radius: 80%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 20);
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+
+        .card-header {
+            background-color: transparent;
+            border-color: rgba(160, 175, 185, 5);
+            background-clip: padding-box;
+
+        }
+
+        .card-body p:last-child {
+            margin-bottom: 0;
+            align-items: center;
+        }
+
+        .card-hide-body .card-body {
+            display: none
+        }
+
+        .form-check-input.is-invalid~.form-check-label,
+        .was-validated .form-check-input:invalid~.form-check-label {
+            color: #f54394
+        }
+    </style>
+</head>
+<body>
+    <div id="content" class="flex">
+        <div class="page-content page-container" id="page-content">
+            <div class="padding">
+                <center><label style="font-size: 50px; color: blue"><b>MindTester</b></label></center>
+                <div class="row">
+                    <div class="col-md-6" style="margin-top: 6%" >
+                        <div class="card"  style="padding: 6% 0%">
+                            <div class="card-header"><strong><center><h2 style="color: red">Student</h2>Solve Quiz<center></strong></div>
+                            <div class="card-body" style="margin-left: "><br>
+                                <center>
+                                    <a href="{% url 'studentLogin' %}" style="color: white"> 
+                                        <button type="submit" class="btn btn-primary">Login</button>
+                                    </a>
+                                </center>
+                            </div>
+                            <div class="card-body" style="margin-left: "><br>
+                                <center>
+                                    <button type="submit" class="btn btn-primary">
+                                        <a href="{% url 'studentRegister' %}" style="color: white">Register</a> 
+                                    </button>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="margin-top: 6%" >
+                        <div class="card"  style="padding: 6% 0%">
+                            <div class="card-header"><strong><center><h2 style="color: red">Teacher</h2>Create Quiz<center></strong></div>
+                            <div class="card-body" style="margin-left: "><br>
+                                <center>
+                                    <button type="submit" class="btn btn-primary">
+                                        <a href="{% url 'teacherLogin' %}" style="color: white">Login</a> 
+                                    </button>
+                                </center>
+                            </div>
+                            <div class="card-body" style="margin-left: "><br>
+                                <center>
+                                    <button type="submit" class="btn btn-primary">
+                                        <a href="{% url 'teacherRegister' %}" style="color: white">Register</a> 
+                                    </button>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
